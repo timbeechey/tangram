@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="164.16499mm"
+   height="226.43105mm"
+   viewBox="0 0 164.16499 226.43104"
+   version="1.1"
+   id="svg1869"
+   inkscape:version="1.2.1 (9c6d41e, 2022-07-14)"
+   sodipodi:docname="giraffe.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1871"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     showgrid="true"
+     inkscape:zoom="0.70513298"
+     inkscape:cx="236.12567"
+     inkscape:cy="502.03296"
+     inkscape:window-width="1482"
+     inkscape:window-height="886"
+     inkscape:window-x="0"
+     inkscape:window-y="38"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="layer1">
+    <inkscape:grid
+       type="xygrid"
+       id="grid1990"
+       originx="-15.217224"
+       originy="-27.593791" />
+  </sodipodi:namedview>
+  <defs
+     id="defs1866" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-15.217221,-27.593828)">
+    <path
+       style="fill:#000000;fill-opacity:0.75;stroke:#4c8adc;stroke-width:1;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:0.285106"
+       d="m 81.600703,51.877231 13.03708,12.667372 0.37922,26.0728 0.37922,26.072767 -13.13481,-12.75826 -13.13486,-12.758197 -0.28148,-25.98191 -0.28149,-25.981861 z"
+       id="path7599" />
+    <path
+       style="fill:#000000;fill-opacity:0.75;stroke:#4c8adc;stroke-width:1;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:0.285106"
+       d="m 123.39127,173.13299 0.008,24.94175 -5.14245,-4.81175 c -2.82834,-2.64647 -8.53159,-8.16847 -12.67387,-12.27113 l -7.531434,-7.45935 12.665724,-12.6706 12.66572,-12.67059 z"
+       id="path7601" />
+    <path
+       style="fill:#000000;fill-opacity:0.75;stroke:#4c8adc;stroke-width:1;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:0.285106"
+       d="M 83.137696,213.33632 70.09996,200.29459 83.23351,187.16507 96.36706,174.0355 l 13.03774,13.03776 13.0378,13.03772 -13.13361,13.13354 -13.13356,13.13353 z"
+       id="path7603" />
+    <path
+       style="fill:#000000;fill-opacity:0.75;stroke:#4c8adc;stroke-width:1;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:0.285106"
+       d="m 69.182294,201.63516 c 0.09054,0.0867 5.751608,5.80975 12.580247,12.71792 l 12.415699,12.5603 -12.529357,12.3362 c -11.247477,11.07409 -12.552842,12.24576 -12.758846,11.45216 -0.25575,-0.98525 0.03212,-49.31573 0.292257,-49.06658 z"
+       id="path7605" />
+    <path
+       style="fill:#000000;fill-opacity:0.75;stroke:#4c8adc;stroke-width:1;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:0.285106"
+       d="m 67.226371,54.076791 0.03,25.983002 -25.76961,0.0298 -25.76961,0.0298 19.05952,-19.25228 c 10.48275,-10.588762 22.06558,-22.294547 25.73962,-26.012837 l 6.68008,-6.76052 z"
+       id="path7607" />
+    <path
+       style="fill:#000000;fill-opacity:0.75;stroke:#4c8adc;stroke-width:1;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:0.285106"
+       d="m 95.871354,119.90439 c 14.729726,14.78085 26.738786,26.99789 26.686786,27.1489 -0.0833,0.24174 -50.793498,49.17995 -52.850497,51.00365 l -0.804637,0.71338 0.09305,-52.87013 0.09305,-52.870157 z"
+       id="path7609" />
+    <path
+       style="fill:#000000;fill-opacity:0.75;stroke:#4c8adc;stroke-width:1;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:0.285106"
+       d="m 152.28827,227.51589 -26.59392,26.00905 -0.2389,-26.33337 c -0.1314,-14.4833 -0.25957,-38.15336 -0.28479,-52.60017 l -0.0459,-26.26689 26.87872,26.59123 26.87875,26.59119 z"
+       id="path7611" />
+  </g>
+</svg>

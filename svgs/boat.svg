@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="158.93372mm"
+   height="170.64897mm"
+   viewBox="0 0 158.93371 170.64897"
+   version="1.1"
+   id="svg1869"
+   inkscape:version="1.2.1 (9c6d41e, 2022-07-14)"
+   sodipodi:docname="boat.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1871"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     showgrid="true"
+     inkscape:zoom="0.70513298"
+     inkscape:cx="261.65277"
+     inkscape:cy="251.01648"
+     inkscape:window-width="1307"
+     inkscape:window-height="886"
+     inkscape:window-x="0"
+     inkscape:window-y="38"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="layer1">
+    <inkscape:grid
+       type="xygrid"
+       id="grid1990"
+       originx="-13.335565"
+       originy="-67.116056" />
+  </sodipodi:namedview>
+  <defs
+     id="defs1866" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-13.335563,-67.116094)">
+    <path
+       style="fill:#000000;fill-opacity:0.75;stroke:#4c8adc;stroke-width:1;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:0.285106"
+       d="m 132.4429,224.24882 -12.68877,-13.01625 -26.073389,-0.33637 -26.07335,-0.33636 12.77984,13.11381 12.77977,13.11387 25.982339,0.23877 25.98229,0.23878 z"
+       id="path7599" />
+    <path
+       style="fill:#000000;fill-opacity:0.75;stroke:#4c8adc;stroke-width:1;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:0.285106"
+       d="m 146.82868,211.56738 24.94067,0.23176 -4.86097,5.09596 c -2.67353,2.80277 -8.2501,8.45268 -12.39238,12.55533 l -7.53141,7.45938 -12.54826,-12.78694 -12.54825,-12.78693 z"
+       id="path7601" />
+    <path
+       style="fill:#000000;fill-opacity:0.75;stroke:#4c8adc;stroke-width:1;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:0.285106"
+       d="m 131.84215,196.29046 -13.03013,-13.04933 13.14122,-13.12186 13.14121,-13.1219 13.03013,13.04536 13.03019,13.04533 -13.14128,13.12588 -13.14122,13.12586 z"
+       id="path7603" />
+    <path
+       style="fill:#000000;fill-opacity:0.75;stroke:#4c8adc;stroke-width:1;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:0.285106"
+       d="m 92.106906,209.46925 c 0.08613,-0.0911 5.758139,-5.80328 12.604894,-12.69351 l 12.44862,-12.52767 12.44793,12.41837 c 11.17433,11.14789 12.35766,12.44268 11.56594,12.65578 -0.98292,0.26457 -49.314044,0.40948 -49.067234,0.14712 z"
+       id="path7605" />
+    <path
+       style="fill:#000000;fill-opacity:0.75;stroke:#4c8adc;stroke-width:1;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:0.285106"
+       d="m 111.72265,122.36084 -18.300094,-18.44517 18.293654,-18.149824 18.29365,-18.149822 -0.002,27.090882 c -0.001,14.899994 0.002,31.367754 0.006,36.595014 l 0.008,9.50411 z"
+       id="path7607" />
+    <path
+       style="fill:#000000;fill-opacity:0.75;stroke:#4c8adc;stroke-width:1;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:0.285106"
+       d="m 116.43039,129.52794 c 14.79939,14.71111 26.86604,26.87127 26.81478,27.02251 -0.0822,0.24212 -50.56059,49.41937 -52.60895,51.25277 l -0.80127,0.71717 -0.15673,-52.86998 -0.15674,-52.87001 z"
+       id="path7609" />
+    <path
+       style="fill:#000000;fill-opacity:0.75;stroke:#4c8adc;stroke-width:1;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:0.285106"
+       d="m 51.562835,208.77207 -37.198172,0.0573 18.212283,-19.02149 c 10.016699,-10.46177 26.449009,-27.49903 36.516259,-37.86055 l 18.30427,-18.83893 0.68134,37.80337 0.68234,37.80335 z"
+       id="path7611" />
+  </g>
+</svg>
