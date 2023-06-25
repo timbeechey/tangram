@@ -38,17 +38,6 @@ function love.load()
     --]]
     
     cellSize = 120
-
-    indicators = love.graphics.newImage("indicators.png")
-    local indicators_image_width = indicators:getWidth()
-    local indicators_image_height = indicators:getHeight()
-    indicatorsFrames = {}
-    local indicators_frame_width = cellSize
-    local indicators_frame_height = cellSize
-    
-    for i=0,1 do
-        table.insert(indicatorsFrames, love.graphics.newQuad(i * indicators_frame_width, 0, indicators_frame_width, indicators_frame_height, indicators_image_width, indicators_image_height))
-    end
     
     tangrams = love.graphics.newImage("set02.png")
     local image_width = tangrams:getWidth()
@@ -219,9 +208,6 @@ function love.draw()
         else
             love.graphics.setColor(1,1,1,0.3)
         end
-        if i == currentCol then
-        love.graphics.draw(indicators, indicatorsFrames[1], cellSize + ((i-1) * cellSize), 0)
-        end
         love.graphics.draw(letters, letterFrames[i], cellSize + ((i-1) * cellSize), 0)
     end
 
@@ -231,9 +217,6 @@ function love.draw()
             love.graphics.setColor(1,1,1)
         else
             love.graphics.setColor(1,1,1,0.3)
-        end
-        if i == currentRow then
-            love.graphics.draw(indicators, indicatorsFrames[2], 0, cellSize + ((i-1) * cellSize))
         end
         love.graphics.draw(numbers, numberFrames[i], 0, cellSize + ((i-1) * cellSize))
     end
