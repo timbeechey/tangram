@@ -91,11 +91,13 @@ function love.load()
         {1,1,1}                      -- white
     }
     
+    -- start in the top left cell
     currentRow = 1
     currentCol = 1
 
-    currentX = cellSize + (cellSize / 2)
-    currentY = cellSize + (cellSize / 2)
+    -- initial coordinate is the middle of the first cell
+    currentX = (currentRow * cellSize) + ((currentRow * cellSize) / 2)
+    currentY = (currentRow * cellSize) + ((currentRow * cellSize) / 2)
 
     moves = {}
 
