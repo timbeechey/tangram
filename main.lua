@@ -1,5 +1,7 @@
 function love.load()
 
+    require("generate")
+
     icon = love.graphics.newImage("icon.png")
 
     socket = require("socket") -- for milisecond precision time
@@ -11,31 +13,9 @@ function love.load()
 
     love.graphics.setBackgroundColor(1,1,1)
 
-    --[[
-    1: orange
-    2: blue
-    3: green
-    --]]
-    colourMap = {
-        {1,1,2,3,1,2},
-        {2,3,2,1,2,3},
-        {2,1,3,3,1,1},
-        {3,2,1,2,2,2},
-        {2,3,3,1,3,3},
-        {2,1,2,2,1,2}
-    }
+    pzl = make_puzzle()
 
-    --[[
-    1: swan
-    2: giraffe
-    3: running man
-    4: kangeroo
-    5: tall ship
-    6: rooster
-    7: man riding horse
-    8: depressed man
-    9: low ship
-    --]]
+    colourMap = pzl.colour_map
     
     cellSize = 120
     
@@ -75,14 +55,7 @@ function love.load()
         table.insert(numberFrames, love.graphics.newQuad(i * number_frame_width, 0, number_frame_width, number_frame_height, numbers_width, numbers_height))
     end
 
-    imageMap = {
-        {1,2,2,3,3,6},
-        {4,4,5,5,5,6},
-        {3,9,4,9,5,4},
-        {3,1,7,7,2,4},
-        {8,8,7,5,6,1},
-        {9,9,9,6,6,1}
-    }
+    imageMap = pzl.image_map
 
     colours = {
         {246/255, 156/255, 51/255},  -- orange
@@ -103,7 +76,7 @@ function love.load()
 
     success, errormsg = love.filesystem.append(fname, "player" .. "time," .. "direction," .. "x," .. "y" .. "\n")
     
-    player = 1
+    player = 0
     
     -- blank out every other colour and tangram
     -- alternately for player 1 and player 2
@@ -140,28 +113,6 @@ function love.load()
     end
     
 end
-
---[[
-function love.keypressed(key)
-    -- save events to file
-    -- the file is located in the game's save directory
-    -- on macos this is ~/Libary/Application Support/LOVE/tangram
-    -- on windows ... appdata\roaming\LOVE\tangram
-    local dat = socket.gettime() - gameTimeMs .. "," .. key .. "\n"
-    success, errormsg = love.filesystem.append(fname, dat)
-
-    if key == "right" and currentCol < 6 then
-        currentCol = currentCol + 1
-    elseif key == "left" and currentCol > 1 then
-        currentCol = currentCol - 1
-    elseif key == "up" and currentRow > 1 then
-        currentRow = currentRow - 1
-    elseif key == "down" and currentRow < 6 then
-        currentRow = currentRow + 1
-    end
-end
---]]
-
 
 function love.mousepressed(x, y, button, istouch, presses)
     -- calculate the column that corresponds to x and
@@ -227,7 +178,7 @@ function love.draw()
         for j, tile in ipairs(row) do
             love.graphics.setColor(colours[tile])
             love.graphics.rectangle("fill", j*cellSize, i*cellSize, cellSize, cellSize) -- draw colours
-            love.graphics.setColor(0,0,0)                       -- black for lines
+            love.graphics.setColor(0,0,0)  -- black for lines
             love.graphics.rectangle("line", j*cellSize, i*cellSize, cellSize, cellSize) -- draw lines
             love.graphics.setColor(1,1,1)                       -- white for images
             love.graphics.draw(tangrams, imageFrames[imageMap[i][j]], j*cellSize, i*cellSize) -- draw tangrams
