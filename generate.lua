@@ -1,5 +1,15 @@
 math.randomseed(os.time())
 
+function list_contains(lst, x)
+  local isin = false
+  for i, v in ipairs(lst) do
+    if v == x then
+      isin = true
+    end
+  end
+  return isin
+end
+
 function make_path()
   -- retry making path from this point if it gets stuck
   ::redo::
@@ -94,6 +104,7 @@ function fill_path(p)
     image_map[i] = {0,0,0,0,0,0}
   end
 
+  -- count redos
   attempts = attempts + 1
 
   if attempts > 5 then -- stuck
@@ -112,34 +123,37 @@ function fill_path(p)
   for i = 2, #p.path_coords do
     local current_cell = p.path_coords[i]
     local previous_cell = p.path_coords[i-1]
+    local two_back_cell = p.path_coords[i-2]
 
     -- create set of all possible colours by usings table keys
-    local all_colours = {}
-    for _, v in ipairs({1,2,3}) do
-      all_colours[v] = true
-    end
+    local all_colours = {[1] = true, [2] = true, [3] = true}
   
     -- create set of all possible tangrams by usings table keys
-    local all_tangrams = {}
-    for _, v in ipairs({1,2,3,4,5,6,7,8,9}) do
-      all_tangrams[v] = true
-    end
-    
+    local all_tangrams = {[1] = true,
+                          [2] = true,
+                          [3] = true,
+                          [4] = true,
+                          [5] = true,
+                          [6] = true,
+                          [7] = true,
+                          [8] = true,
+                          [9] = true}
+ 
     -- remove items from colour or tangram sets when they are
     -- in adjacent cells to the current cell
-    if current_cell[1] > 1 then
+    if current_cell[1] > 1 and (current_cell[1]-1 ~= previous_cell[1] or current_cell[2] ~= previous_cell[2]) then
       all_colours[colour_map[current_cell[1]-1][current_cell[2]]] = nil
       all_tangrams[image_map[current_cell[1]-1][current_cell[2]]] = nil
     end
-    if current_cell[1] < 6 then
+    if current_cell[1] < 6 and (current_cell[1]+1 ~= previous_cell[1] or current_cell[2] ~= previous_cell[2]) then
       all_colours[colour_map[current_cell[1]+1][current_cell[2]]] = nil
       all_tangrams[image_map[current_cell[1]+1][current_cell[2]]] = nil
     end
-    if current_cell[2] > 1 then
+    if current_cell[2] > 1 and (current_cell[1] ~= previous_cell[1] or current_cell[2]-1 ~= previous_cell[2]) then
       all_colours[colour_map[current_cell[1]][current_cell[2]-1]] = nil
       all_tangrams[image_map[current_cell[1]][current_cell[2]-1]] = nil
     end
-    if current_cell[2] < 6 then
+    if current_cell[2] < 6 and (current_cell[1] ~= previous_cell[1] or current_cell[2]+1 ~= previous_cell[2]) then
       all_colours[colour_map[current_cell[1]][current_cell[2]+1]] = nil
       all_tangrams[image_map[current_cell[1]][current_cell[2]+1]] = nil
     end
@@ -167,20 +181,48 @@ function fill_path(p)
       goto redo_fill_path
     end
 
+    -- can't match previous cell in colour or tangram due to clashes with other adj path cells
+    if list_contains(complimentary_colours, colour_map[previous_cell[1]][previous_cell[2]]) == false and
+       list_contains(complimentary_tangrams, image_map[previous_cell[1]][previous_cell[2]]) == false then
+        goto redo_fill_path
+    end
+
     if match_type == 1 then -- match colour
-      if complimentary_colours[colour_map[previous_cell[1]][previous_cell[2]]] then
+      if list_contains(complimentary_colours, colour_map[previous_cell[1]][previous_cell[2]]) then
         colour_map[current_cell[1]][current_cell[2]] = colour_map[previous_cell[1]][previous_cell[2]] -- match colour
-      else
-        goto redo_fill_path
-      end
-      image_map[current_cell[1]][current_cell[2]] = complimentary_tangrams[math.random(1, #complimentary_tangrams)]
-    else -- match tangram
-      colour_map[current_cell[1]][current_cell[2]] = complimentary_colours[math.random(1, #complimentary_colours)]
-      if complimentary_tangrams[image_map[previous_cell[1]][previous_cell[2]]] then
+        image_map[current_cell[1]][current_cell[2]] = complimentary_tangrams[math.random(1, #complimentary_tangrams)]
+      else -- can't match colour because of clash with another adjacent cell in the path
+        colour_map[current_cell[1]][current_cell[2]] = complimentary_colours[math.random(1, #complimentary_colours)]
         image_map[current_cell[1]][current_cell[2]] = image_map[previous_cell[1]][previous_cell[2]] -- match tangram
-      else
-        goto redo_fill_path
       end
+    else -- match tangram
+      if list_contains(complimentary_tangrams, image_map[previous_cell[1]][previous_cell[2]]) then
+        colour_map[current_cell[1]][current_cell[2]] = complimentary_colours[math.random(1, #complimentary_colours)]
+        image_map[current_cell[1]][current_cell[2]] = image_map[previous_cell[1]][previous_cell[2]] -- match tangram
+      else -- can't match tangram because of clash with another adjacent cell in the path
+        colour_map[current_cell[1]][current_cell[2]] = colour_map[previous_cell[1]][previous_cell[2]] -- match colour
+        image_map[current_cell[1]][current_cell[2]] = complimentary_tangrams[math.random(1, #complimentary_tangrams)]
+      end
+    end
+
+    -- don't allow adjacent cells in the path to match both colour and tangram
+    if colour_map[current_cell[1]][current_cell[2]] == colour_map[previous_cell[1]][previous_cell[2]] and
+       image_map[current_cell[1]][current_cell[2]] == image_map[previous_cell[1]][previous_cell[2]] then
+      goto redo_fill_path
+    end
+
+    -- don't allows runs of three cells of the same colour within the path
+    if two_back_cell ~= nil and 
+       colour_map[current_cell[1]][current_cell[2]] == colour_map[previous_cell[1]][previous_cell[2]] and
+       colour_map[current_cell[1]][current_cell[2]] == colour_map[two_back_cell[1]][two_back_cell[2]] then
+      goto redo_fill_path
+    end
+
+    -- don't allows runs of three cells of the same tangram within the path
+    if two_back_cell ~= nil and 
+       image_map[current_cell[1]][current_cell[2]] == image_map[previous_cell[1]][previous_cell[2]] and
+       image_map[current_cell[1]][current_cell[2]] == image_map[two_back_cell[1]][two_back_cell[2]] then
+      goto redo_fill_path
     end
 
     -- alternate match type at each step of the path
@@ -241,25 +283,25 @@ function pad_path(p)
             end
 
             -- don't use colour or tangram from cell above
-            if i > 1 then
+            if i > 1 and p.colour_map[i-1][j] ~= 0 then
               possible_colours[p.colour_map[i-1][j]] = nil
               possible_tangrams[p.image_map[i-1][j]] = nil
             end
 
             -- don't use colour or tangram from cell below
-            if i < 6 then
+            if i < 6 and p.colour_map[i+1][j] ~= 0 then
               possible_colours[p.colour_map[i+1][j]] = nil
               possible_tangrams[p.image_map[i+1][j]] = nil
             end
 
             -- don't use colour or tangram from cell to left
-            if j > 1 then
+            if j > 1 and p.colour_map[i][j-1] ~= 0 then
               possible_colours[p.colour_map[i][j-1]] = nil
               possible_tangrams[p.image_map[i][j-1]] = nil
             end
 
             -- don't use colour or tangram from cell to right
-            if j < 6 then
+            if j < 6 and p.colour_map[i][j+1] ~= 0 then
               possible_colours[p.colour_map[i][j+1]] = nil
               possible_tangrams[p.image_map[i][j+1]] = nil
             end
@@ -280,6 +322,7 @@ function pad_path(p)
               end
             end
 
+            -- no colour or tangram options left
             if #complimentary_colours == 0 then
               goto redo_pad_path
             elseif #complimentary_tangrams == 0 then
@@ -300,7 +343,7 @@ function pad_path(p)
   return {colour_map = colour_map, image_map = image_map, EXIT_SUCCESS = 0}
 end
 
-function make_puzzle()
+function make_maps()
   ::redo::
   local path = make_path()
   local filled_path = fill_path(path)
