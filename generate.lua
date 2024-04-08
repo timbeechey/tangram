@@ -1,4 +1,5 @@
-math.randomseed(os.time())
+-- math.randomseed(os.time())
+math.randomseed(tonumber(random_seed.text))
 
 function list_contains(lst, x)
   local isin = false
@@ -10,13 +11,12 @@ function list_contains(lst, x)
   return isin
 end
 
-function make_path()
-  -- retry making path from this point if it gets stuck
-  ::redo::
 
+function make_path()
+  -- Retry making path from this point if it gets stuck.
+  ::redo::
   -- start with an empty grid
   local grid = {}
-
   -- fill the grid with 0s
   for i = 1, 6 do
     grid[i] = {0,0,0,0,0,0}
@@ -25,18 +25,14 @@ function make_path()
   -- set the starting row and column
   local row = 1
   local column = 1
-
   -- start path in start cell
   grid[row][column] = 1
-
-  -- count completed moves.
+  -- count completed moves
   local n = 2
-
   -- store each move as "left", "right", "up", or "down"
   local completed_moves = {}
   -- store the grid coordinates of the end point of each move
   local path_coords = {{1,1}}
-
   -- work towards the bottom right of the grid (cell 6,6)
   while row ~=6 or column ~= 6 do
     -- gather set of possible moves available from the current cell
@@ -57,7 +53,7 @@ function make_path()
     if row > 1 and grid[row-1][column] == 0 then
       table.insert(mvs, "up")
     end
-    
+
     if #mvs == 0 then -- no possible moves
       goto redo
     else -- at least one possible available
@@ -127,7 +123,7 @@ function fill_path(p)
 
     -- create set of all possible colours by usings table keys
     local all_colours = {[1] = true, [2] = true, [3] = true}
-  
+
     -- create set of all possible tangrams by usings table keys
     local all_tangrams = {[1] = true,
                           [2] = true,
@@ -138,7 +134,7 @@ function fill_path(p)
                           [7] = true,
                           [8] = true,
                           [9] = true}
- 
+
     -- remove items from colour or tangram sets when they are
     -- in adjacent cells to the current cell
     if current_cell[1] > 1 and (current_cell[1]-1 ~= previous_cell[1] or current_cell[2] ~= previous_cell[2]) then
@@ -159,18 +155,18 @@ function fill_path(p)
     end
 
     -- construct a list of tangrams that are not used in adjacent cells
-    complimentary_tangrams = {}
-    for i = 1, 9 do
-      if all_tangrams[i] then
-        table.insert(complimentary_tangrams, i)
+    local complimentary_tangrams = {}
+    for tangram_idx = 1, 9 do
+      if all_tangrams[tangram_idx] then
+        table.insert(complimentary_tangrams, tangram_idx)
       end
     end
 
     -- construct a list of colours that are not used in adjacent cells
-    complimentary_colours = {}
-    for i = 1, 3 do
-      if all_colours[i] then
-        table.insert(complimentary_colours, i)
+    local complimentary_colours = {}
+    for colour_idx = 1, 3 do
+      if all_colours[colour_idx] then
+        table.insert(complimentary_colours, colour_idx)
       end
     end
 
@@ -275,7 +271,7 @@ function pad_path(p)
             for _,v in ipairs({1,2,3}) do
               possible_colours[v] = true
             end
-          
+
             -- create set of all possible tangrams by usings table keys
             local possible_tangrams = {}
             for _,v in ipairs({1,2,3,4,5,6,7,8,9}) do
