@@ -8,7 +8,7 @@ The task requires the player to find a path from the top-left cell of the grid t
 
 In two-player mode each player sees only half the puzzle content with each player having a complementary view. The task for two players is to verbally exchange information with one-another to make it possible for both players to find a path through the puzzle. 
 
-<img source=https://github.com/timbeechey/tangram/assets/66388815/1563d49a-1261-4368-80df-e4c81a1a6e48, width="200"><img source=https://github.com/timbeechey/tangram/assets/66388815/c67cf728-8609-4c31-a86f-b352c7b309ab, width="200">
+<img source="https://github.com/timbeechey/tangram/assets/66388815/1563d49a-1261-4368-80df-e4c81a1a6e48", width="200"><img source="https://github.com/timbeechey/tangram/assets/66388815/c67cf728-8609-4c31-a86f-b352c7b309ab", width="200">
 
 # Building the game
 
