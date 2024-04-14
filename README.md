@@ -6,6 +6,10 @@ The task requires the player to find a path from the top-left cell of the grid t
 
 ![puzzle](https://github.com/timbeechey/tangram/assets/66388815/21720f9b-eb8e-4a1f-8d10-e77d3640e9ba)
 
+In two-player mode each player sees only half the puzzle content with each player having a complementary view. The task for two players is to verbally exchange information with one-another to make it possible for both players to find a path through the puzzle. 
+
+![p1](https://github.com/timbeechey/tangram/assets/66388815/1563d49a-1261-4368-80df-e4c81a1a6e48) ![p2](https://github.com/timbeechey/tangram/assets/66388815/c67cf728-8609-4c31-a86f-b352c7b309ab)
+
 # Building the game
 
 To build the source first install the [love2d](https://www.love2d.org/) game engine. The download the [boon](https://github.com/camchenry/boon) build tool. From within the source directory execute the command:
