@@ -14,7 +14,7 @@ Each participant's moves are recorded in a CSV file along with timestamps for la
 
 # Building from source
 
-To build the source first install the [love2d](https://www.love2d.org/) game engine. The download the [boon](https://github.com/camchenry/boon) build tool. From within the source directory execute the command:
+To build the source first install the [love2d](https://www.love2d.org/) game engine and the [boon](https://github.com/camchenry/boon) build tool. From within the source directory execute the command:
 
 ```
 boon build . --target windows
@@ -30,7 +30,7 @@ to create a MacOS application.
 
 # Running the game
 
-The game executable can be run by double clicking on the application icon. A start-up menu provides text boxes to enter the ID and group of each participant. In two-participant mode, participants must be assigned to `player 1` or `player 2`. To ensure that each participant sees the same puzzles, the same random seed must be entered for both participants.
+The game executable can be run by double clicking on the application icon. A start-up menu provides text boxes to enter the ID and group of each participant. In two-participant mode, participants must be assigned to `player 1` or `player 2` to ensure the participants have complementary views. To ensure that each participant sees the same randomly generated puzzles, the same random seed must be entered for both participants.
 
 ![Screenshot 2024-04-14 at 21 36 12](https://github.com/timbeechey/tangram/assets/66388815/962270db-39d4-4894-ab71-e0a9eb705d5d)
 
