@@ -1,6 +1,6 @@
 # Tangram Referential Communication Task
 
-A gameified implementation of the referential communication task described by [Beechey et. al. (2019)](ttps://doi.org/10.1044/2018_JSLHR-H-18-0107).
+A gameified implementation of the referential communication task described by [Beechey et. al. (2019)](https://doi.org/10.1044/2018_JSLHR-H-18-0107).
 
 The task requires the participant to find a path from the top-left cell of the grid to the bottom-right cell by moving horizontally or vertically between cells which share either the same colour or the same tangram image.
 
