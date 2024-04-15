@@ -10,7 +10,7 @@ In two-participant mode each person sees only half the puzzle content with each 
 
 ![two-player](https://github.com/timbeechey/tangram/assets/66388815/0042c4f3-3bbd-4830-92db-cb86d721d880)
 
-Each participant's moves are recorded in a CSV file along with timestamps for later analysis.
+Moves are recorded in a CSV file along with timestamps for later analysis.
 
 # Building from source
 
