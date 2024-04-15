@@ -8,11 +8,11 @@ The task requires the participant to find a path from the top-left cell of the g
 
 In two-participant mode each person sees only half the puzzle content with each individual having a complementary view which is not sufficient to navigate through the puzzle alone. The task for two participants is to verbally exchange information with each other to make it possible for both participants to find a path through the puzzle together.
 
-<img src="https://github.com/timbeechey/tangram/assets/66388815/1563d49a-1261-4368-80df-e4c81a1a6e48" width="400">  <img src="https://github.com/timbeechey/tangram/assets/66388815/c67cf728-8609-4c31-a86f-b352c7b309ab" width="400">
+![two-player](https://github.com/timbeechey/tangram/assets/66388815/0042c4f3-3bbd-4830-92db-cb86d721d880)
 
 Each participant's moves are recorded in a CSV file along with timestamps for later analysis.
 
-# Building the game executable
+# Building from source
 
 To build the source first install the [love2d](https://www.love2d.org/) game engine. The download the [boon](https://github.com/camchenry/boon) build tool. From within the source directory execute the command:
 
