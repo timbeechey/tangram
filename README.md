@@ -4,35 +4,35 @@ A gamified implementation of the referential communication task described by [Be
 
 The task requires the participant to find a path from the top-left cell of the grid to the bottom-right cell by moving horizontally or vertically between cells which share either the same colour or the same tangram image.
 
-![puzzle](https://github.com/timbeechey/tangram/assets/66388815/21720f9b-eb8e-4a1f-8d10-e77d3640e9ba)
+![puzzle.gif]
 
 In two-participant mode each person sees only half the puzzle content with each individual having a complementary view which is not sufficient to navigate through the puzzle alone. The task for two participants is to verbally exchange information with each other to make it possible for both participants to find a path through the puzzle together.
 
-![two-player](https://github.com/timbeechey/tangram/assets/66388815/0042c4f3-3bbd-4830-92db-cb86d721d880)
+![two-player.gif]
 
 Moves are recorded in a CSV file along with timestamps for later analysis.
 
 # Building from source
 
-To build the source first install the [love2d](https://www.love2d.org/) game engine and the [boon](https://github.com/camchenry/boon) build tool. From within the source directory execute the command:
+To build the source first install the [love2d](https://www.love2d.org/) game engine and the [boon](https://github.com/camchenry/boon) build tool. To create a Windows executable, run the command from within the source directory:
 
 ```
 boon build . --target windows
 ```
 
-to create a Windows executable. Or:
+To create a Mac application use the `--target macos` option.
 
 ```
 boon build . --target macos
 ```
 
-to create a MacOS application.
-
 # Running the game
 
 The game executable can be run by double clicking on the application icon. A start-up menu provides text boxes to enter the ID and group of each participant. In two-participant mode, participants must be assigned to `player 1` or `player 2` to ensure the participants have complementary views. To ensure that each participant sees the same randomly generated puzzles, the same random seed must be entered for both participants.
 
-![Screenshot 2024-04-14 at 21 36 12](https://github.com/timbeechey/tangram/assets/66388815/962270db-39d4-4894-ab71-e0a9eb705d5d)
+
+
+![game_menu.jpg]
 
 # References
 
