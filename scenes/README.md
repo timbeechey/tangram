@@ -14,19 +14,17 @@ Moves are recorded in a CSV file along with timestamps for later analysis.
 
 # Building from source
 
-To build the source first install the [love2d](https://www.love2d.org/) game engine and the [boon](https://github.com/camchenry/boon) build tool. From within the source directory execute the command:
+To build the source first install the [love2d](https://www.love2d.org/) game engine and the [boon](https://github.com/camchenry/boon) build tool. To create a Windows executable, run the command from within the source directory:
 
 ```
 boon build . --target windows
 ```
 
-to create a Windows executable. Or:
+To create a Mac application use the `--target macos` option.
 
 ```
 boon build . --target macos
 ```
-
-to create a MacOS application.
 
 # Running the game
 
