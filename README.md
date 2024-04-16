@@ -4,11 +4,11 @@ A gamified implementation of the referential communication task described by [Be
 
 The task requires the participant to find a path from the top-left cell of the grid to the bottom-right cell by moving horizontally or vertically between cells which share either the same colour or the same tangram image.
 
-![puzzle.gif]
+![puzzle](https://github.com/timbeechey/tangram/blob/main/puzzle.gif)
 
 In two-participant mode each person sees only half the puzzle content with each individual having a complementary view which is not sufficient to navigate through the puzzle alone. The task for two participants is to verbally exchange information with each other to make it possible for both participants to find a path through the puzzle together.
 
-![two-player.gif]
+![two-player](https://github.com/timbeechey/tangram/blob/main/two-player.gif)
 
 Moves are recorded in a CSV file along with timestamps for later analysis.
 
@@ -32,7 +32,7 @@ The game executable can be run by double clicking on the application icon. A sta
 
 
 
-![game_menu.jpg]
+![game_menu](https://github.com/timbeechey/tangram/blob/main/game_menu.jpg)
 
 # References
 
