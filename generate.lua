@@ -1,7 +1,7 @@
 -- math.randomseed(os.time())
 math.randomseed(tonumber(random_seed.text))
 
-function list_contains(lst, x)
+local function list_contains(lst, x)
   local isin = false
   for i, v in ipairs(lst) do
     if v == x then
@@ -12,7 +12,7 @@ function list_contains(lst, x)
 end
 
 
-function make_path()
+local function make_path()
   -- Retry making path from this point if it gets stuck.
   ::redo::
   -- start with an empty grid
@@ -87,7 +87,8 @@ end
 
 -- TODO: randomly select a set of tangrams
 
-function fill_path(p)
+
+local function fill_path(p)
   local attempts = 0
   ::redo_fill_path::
 
@@ -231,8 +232,9 @@ function fill_path(p)
   return {colour_map = colour_map, image_map = image_map, EXIT_SUCCESS = 0}
 end
 
+
 -- pass the output of fill_path()
-function pad_path(p)
+local function pad_path(p)
   -- Add colours and tangrams to each cell adjacent to the path.
   -- These cells form a barrier around the path by ensuring that
   -- neither colours nor tangrams match in cells that can be
@@ -252,42 +254,42 @@ function pad_path(p)
   end
 
   for i = 1, 6 do
-    colour_map[i] = {0,0,0,0,0,0}
-    image_map[i] = {0,0,0,0,0,0}
+    colour_map[i] = {0, 0, 0, 0, 0, 0}
+    image_map[i] = {0, 0, 0, 0, 0, 0}
   end
 
   for i = 1,6 do
     for j = 1,6 do
       if p.colour_map[i][j] == 0 then -- find cells not on the path
         -- find cells adjacent to path
-        if ((i > 1) and (p.colour_map[i-1][j] ~= 0)) or -- cell above on path
-           ((i < 6) and (p.colour_map[i+1][j] ~= 0)) or -- cell below on path
-           ((j > 1) and (p.colour_map[i][j-1] ~= 0)) or -- cell to left on path
-           ((j < 6) and (p.colour_map[i][j+1] ~= 0)) then -- cell to right on path
+        if ((i > 1) and (p.colour_map[i - 1][j] ~= 0)) or -- cell above on path
+           ((i < 6) and (p.colour_map[i + 1][j] ~= 0)) or -- cell below on path
+           ((j > 1) and (p.colour_map[i][j - 1] ~= 0)) or -- cell to left on path
+           ((j < 6) and (p.colour_map[i][j + 1] ~= 0)) then -- cell to right on path
             -- construct set of colours and tangrams in adjacent cells on path
             -- create set of all colours and tangrams
             -- create set of all possible colours by usings table keys
             local possible_colours = {}
-            for _,v in ipairs({1,2,3}) do
+            for _,v in ipairs({1, 2, 3}) do
               possible_colours[v] = true
             end
 
             -- create set of all possible tangrams by usings table keys
             local possible_tangrams = {}
-            for _,v in ipairs({1,2,3,4,5,6,7,8,9}) do
+            for _,v in ipairs({1, 2, 3, 4, 5, 6, 7, 8, 9}) do
               possible_tangrams[v] = true
             end
 
             -- don't use colour or tangram from cell above
-            if i > 1 and p.colour_map[i-1][j] ~= 0 then
-              possible_colours[p.colour_map[i-1][j]] = nil
-              possible_tangrams[p.image_map[i-1][j]] = nil
+            if i > 1 and p.colour_map[i - 1][j] ~= 0 then
+              possible_colours[p.colour_map[i - 1][j]] = nil
+              possible_tangrams[p.image_map[i - 1][j]] = nil
             end
 
             -- don't use colour or tangram from cell below
-            if i < 6 and p.colour_map[i+1][j] ~= 0 then
-              possible_colours[p.colour_map[i+1][j]] = nil
-              possible_tangrams[p.image_map[i+1][j]] = nil
+            if i < 6 and p.colour_map[i + 1][j] ~= 0 then
+              possible_colours[p.colour_map[i + 1][j]] = nil
+              possible_tangrams[p.image_map[i + 1][j]] = nil
             end
 
             -- don't use colour or tangram from cell to left
@@ -339,7 +341,8 @@ function pad_path(p)
   return {colour_map = colour_map, image_map = image_map, EXIT_SUCCESS = 0}
 end
 
-function make_maps()
+
+function MakeMaps()
   ::redo::
   local path = make_path()
   local filled_path = fill_path(path)

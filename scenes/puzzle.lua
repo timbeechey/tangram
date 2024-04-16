@@ -1,22 +1,26 @@
 local puzzle_scene = {}
 
+font = love.graphics.newFont(20)
 
 -- Global parameters
 Puzzle_number = 1 -- keep track of how many puzzles have been completed
-CellSize = 120 -- size of squares that make up the puzzle grid
+-- Completed_puzzles = 0
+CellSize = 120    -- size of squares that make up the puzzle grid
 
 
-function make_frames(m)
+local function make_frames(m)
+    local image_sets = {"set01.png", "set02.png"}
+    local image_set_idx = math.random(1, #image_sets) -- choose 1 set of tangrams
     local colours = m.colour_map
     local images = m.image_map
-    local tangrams = love.graphics.newImage("set02.png")
+    local tangrams = love.graphics.newImage(image_sets[image_set_idx])
     local image_width = tangrams:getWidth()
     local image_height = tangrams:getHeight()
     local imageFrames = {}
     local image_frame_width = CellSize
     local image_frame_height = CellSize
 
-    for i=0, 9 do
+    for i = 0, 9 do
         table.insert(imageFrames, love.graphics.newQuad(i * image_frame_width, 0, image_frame_width, image_frame_height, image_width, image_height))
     end
 
@@ -27,7 +31,7 @@ function make_frames(m)
     local letter_frame_width = CellSize
     local letter_frame_height = CellSize
 
-    for i=0,5 do
+    for i = 0, 5 do
         table.insert(letterFrames, love.graphics.newQuad(i * letter_frame_width, 0, letter_frame_width, letter_frame_height, letters_width, letters_height))
     end
 
@@ -41,8 +45,6 @@ function make_frames(m)
     for i = 0, 5 do
         table.insert(numberFrames, love.graphics.newQuad(i * number_frame_width, 0, number_frame_width, number_frame_height, numbers_width, numbers_height))
     end
-
-    Finished = false -- global
 
     -- blank out every other colour and tangram
     -- alternately for player 1 and player 2
@@ -104,7 +106,7 @@ function puzzle_scene.load()
         {1, 1, 1}                    -- white
     }
 
-    local mps = make_maps()
+    local mps = MakeMaps()
     local frms = make_frames(mps)
 
     ColourMap = frms.colour_map
@@ -116,8 +118,6 @@ function puzzle_scene.load()
     Numbers = frms.numbers
     Tangrams = frms.tangrams
 
-    Finished = false
-
     -- start in the top left cell
     CurrentRow = 1
     CurrentCol = 1
@@ -125,10 +125,10 @@ function puzzle_scene.load()
     -- initial coordinate is the middle of the first cell
     CurrentX = (CurrentRow * CellSize) + ((CurrentRow * CellSize) / 2)
     CurrentY = (CurrentRow * CellSize) + ((CurrentRow * CellSize) / 2)
-
+    -- empty moves table
     Moves = {}
 
-    Success, ErrorMsg = love.filesystem.append(Fname, "ID," .. "group," .. "puzzle," .. "time," .. "direction," .. "x," .. "y" .. "\n")
+    Success, ErrorMsg = love.filesystem.append(Fname, "time_since_epoch," .. "participant_id," .. "group," .. "puzzle_number," .. "time_since_puzzle_start," .. "move_direction," .. "x_coord," .. "y_cord," .. "row_num," .. "col_num\n")
 end
 
 
@@ -144,26 +144,29 @@ function love.mousepressed(x, y, button, istouch, presses)
         if newCol == CurrentCol + 1 and newRow == CurrentRow and CurrentCol < 6 then
             table.insert(Moves, {x1=CurrentX, y1=CurrentY, x2=x, y2=y})
             CurrentCol = CurrentCol + 1
-            local dat = participant_id.text .. "," .. group.text .. "," .. Puzzle_number .. "," .. Socket.gettime() - GameTimeMs .. "," .. "right," .. x .. "," .. y .. "\n"
+            local dat = Socket.gettime() .. "," .. participant_id.text .. "," .. group.text .. "," .. Puzzle_number .. "," .. Socket.gettime() - GameTimeMs .. "," .. "right," .. x .. "," .. y .. "," .. CurrentRow .. "," .. CurrentCol .. "\n"
             Success, ErrorMsg = love.filesystem.append(Fname, dat)
         elseif newCol == CurrentCol - 1 and newRow == CurrentRow and CurrentCol > 1 then
             table.insert(Moves, {x1=CurrentX, y1=CurrentY, x2=x, y2=y})
             CurrentCol = CurrentCol - 1
-            local dat = participant_id.text .. "," .. group.text .. "," .. Puzzle_number .. "," .. Socket.gettime() - GameTimeMs .. "," .. "left," .. x .. "," .. y .. "\n"
+            local dat = Socket.gettime() .. "," .. participant_id.text .. "," .. group.text .. "," .. Puzzle_number .. "," .. Socket.gettime() - GameTimeMs .. "," .. "left," .. x .. "," .. y .. "," .. CurrentRow .. "," .. CurrentCol .. "\n"
             Success, ErrorMsg = love.filesystem.append(Fname, dat)
         elseif newRow == CurrentRow + 1 and newCol == CurrentCol and CurrentRow < 6 then
             table.insert(Moves, {x1=CurrentX, y1=CurrentY, x2=x, y2=y})
             CurrentRow = CurrentRow + 1
-            local dat = participant_id.text .. "," .. group.text .. "," .. Puzzle_number .. "," .. Socket.gettime() - GameTimeMs .. "," .. "down," .. x .. "," .. y .. "\n"
+            local dat = Socket.gettime() .. "," .. participant_id.text .. "," .. group.text .. "," .. Puzzle_number .. "," .. Socket.gettime() - GameTimeMs .. "," .. "down," .. x .. "," .. y .. "," .. CurrentRow .. "," .. CurrentCol .. "\n"
             Success, Errormsg = love.filesystem.append(Fname, dat)
         elseif newRow == CurrentRow - 1 and newCol == CurrentCol and CurrentRow > 1 then
             table.insert(Moves, {x1=CurrentX, y1=CurrentY, x2=x, y2=y})
             CurrentRow = CurrentRow - 1
-            local dat = participant_id.text .. "," .. group.text .. "," .. Puzzle_number .. "," .. Socket.gettime() - GameTimeMs .. "," .. "up," .. x .. "," .. y .. "\n"
+            local dat = Socket.gettime() .. "," .. participant_id.text .. "," .. group.text .. "," .. Puzzle_number .. "," .. Socket.gettime() - GameTimeMs .. "," .. "up," .. x .. "," .. y .. "," .. CurrentRow .. "," .. CurrentCol .. "\n"
             Success, Errormsg = love.filesystem.append(Fname, dat)
         end
         CurrentX = x
         CurrentY = y
+    end
+    if CurrentRow == 6 and CurrentCol == 6 then
+        love.graphics.captureScreenshot("image" .. GameTimeS .. "_" .. Puzzle_number .. ".png")
     end
 end
 
@@ -171,17 +174,9 @@ end
 function puzzle_scene.update(dt)
     -- next puzzle button
     if suit.Button("Next", 900, 200, 200, 50).hit then
-        Finished = true
-    end
-
-    -- end game button
-    if suit.Button("Exit", 900, 280, 200, 50).hit then
-        love.event.quit()
-    end
-
-    if Finished == true then
+        Puzzle_number = Puzzle_number + 1
         -- set up a new puzzle
-        local mps = make_maps()
+        local mps = MakeMaps()
         local frms = make_frames(mps)
 
         ColourMap = frms.colour_map
@@ -202,6 +197,14 @@ function puzzle_scene.update(dt)
         CurrentY = (CurrentRow * CellSize) + ((CurrentRow * CellSize) / 2)
 
         Moves = {}
+        -- restart timer
+        GameTimeMs = Socket.gettime()
+
+    end
+
+    -- end game button
+    if suit.Button("Exit", 900, 280, 200, 50).hit then
+        love.event.quit()
     end
 end
 
@@ -243,25 +246,18 @@ function puzzle_scene.draw()
         love.graphics.setColor(0, 1, 0) -- border final cell green
         love.graphics.setLineWidth(7) -- highlight final cell
     else
-        love.graphics.setColor(0, 0, 0)
-        love.graphics.setLineWidth(5) -- highlight current square
+        love.graphics.setColor(1, 1, 0) -- yellow
+        love.graphics.setLineWidth(7) -- highlight current square
     end
     love.graphics.rectangle("line", CurrentCol*CellSize, CurrentRow*CellSize, CellSize, CellSize)
     love.graphics.setLineWidth(5)
     love.graphics.setColor(0, 0, 0, 0.6)
-    for i,move in ipairs(Moves) do
+    for i, move in ipairs(Moves) do
         love.graphics.line(move.x1, move.y1, move.x2, move.y2) -- trace moves
     end
     love.graphics.setLineWidth(1)
 
-    if CurrentRow == 6 and CurrentCol == 6 then
-        -- set current puzzle finished
-        Finished = true
-        -- iterate puzzle number
-        Puzzle_number = Puzzle_number + 1
-        -- restart timer
-        GameTimeMs = Socket.gettime()
-    end
+    love.graphics.print("Puzzle number: " .. tostring(Puzzle_number), font, 900, 650)
 end
 
 
