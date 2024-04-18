@@ -30,8 +30,6 @@ boon build . --target macos
 
 The game executable can be run by double clicking on the application icon. A start-up menu provides text boxes to enter the ID and group of each participant. In two-participant mode, participants must be assigned to `player 1` or `player 2` to ensure the participants have complementary views. To ensure that each participant sees the same randomly generated puzzles, the same random seed must be entered for both participants.
 
-
-
 ![game_menu](https://github.com/timbeechey/tangram/blob/main/game_menu.jpg)
 
 # References

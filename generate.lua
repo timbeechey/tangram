@@ -1,10 +1,10 @@
--- math.randomseed(os.time())
 math.randomseed(tonumber(random_seed.text))
+
 
 local function list_contains(lst, x)
   local isin = false
-  for i, v in ipairs(lst) do
-    if v == x then
+  for i = 1, #lst do
+    if lst[i] == x then
       isin = true
     end
   end
@@ -19,7 +19,7 @@ local function make_path()
   local grid = {}
   -- fill the grid with 0s
   for i = 1, 6 do
-    grid[i] = {0,0,0,0,0,0}
+    grid[i] = {0, 0, 0, 0, 0, 0}
   end
 
   -- set the starting row and column
@@ -32,7 +32,7 @@ local function make_path()
   -- store each move as "left", "right", "up", or "down"
   local completed_moves = {}
   -- store the grid coordinates of the end point of each move
-  local path_coords = {{1,1}}
+  local path_coords = {{1, 1}}
   -- work towards the bottom right of the grid (cell 6,6)
   while row ~=6 or column ~= 6 do
     -- gather set of possible moves available from the current cell
@@ -85,8 +85,6 @@ local function make_path()
   return {grid = grid, moves = completed_moves, path_coords = path_coords}
 end
 
--- TODO: randomly select a set of tangrams
-
 
 local function fill_path(p)
   local attempts = 0
@@ -97,8 +95,8 @@ local function fill_path(p)
   local image_map = {}
 
   for i = 1, 6 do
-    colour_map[i] = {0,0,0,0,0,0}
-    image_map[i] = {0,0,0,0,0,0}
+    colour_map[i] = {0, 0, 0, 0, 0, 0}
+    image_map[i] = {0, 0, 0, 0, 0, 0}
   end
 
   -- count redos
@@ -258,8 +256,8 @@ local function pad_path(p)
     image_map[i] = {0, 0, 0, 0, 0, 0}
   end
 
-  for i = 1,6 do
-    for j = 1,6 do
+  for i = 1, 6 do
+    for j = 1, 6 do
       if p.colour_map[i][j] == 0 then -- find cells not on the path
         -- find cells adjacent to path
         if ((i > 1) and (p.colour_map[i - 1][j] ~= 0)) or -- cell above on path
@@ -274,11 +272,9 @@ local function pad_path(p)
               possible_colours[v] = true
             end
 
-            -- create set of all possible tangrams by usings table keys
-            local possible_tangrams = {}
-            for _,v in ipairs({1, 2, 3, 4, 5, 6, 7, 8, 9}) do
-              possible_tangrams[v] = true
-            end
+            -- which of 9 possible tangrams can be used
+            -- start with all 9
+            local possible_tangrams = {true, true, true, true, true, true, true, true, true}
 
             -- don't use colour or tangram from cell above
             if i > 1 and p.colour_map[i - 1][j] ~= 0 then
@@ -357,8 +353,8 @@ function MakeMaps()
   local colour_map = {}
   local image_map = {}
   for i = 1, 6 do
-    colour_map[i] = {0,0,0,0,0,0}
-    image_map[i] = {0,0,0,0,0,0}
+    colour_map[i] = {0, 0, 0, 0, 0, 0}
+    image_map[i] = {0, 0, 0, 0, 0, 0}
   end
   for x = 1, 6 do
     for y = 1, 6 do

@@ -4,12 +4,11 @@ font = love.graphics.newFont(20)
 
 -- Global parameters
 Puzzle_number = 1 -- keep track of how many puzzles have been completed
--- Completed_puzzles = 0
 CellSize = 120    -- size of squares that make up the puzzle grid
 
 
 local function make_frames(m)
-    local image_sets = {"set01.png", "set02.png"}
+    local image_sets = {"set01.png", "set02.png", "set03.png", "set04.png"}
     local image_set_idx = math.random(1, #image_sets) -- choose 1 set of tangrams
     local colours = m.colour_map
     local images = m.image_map
@@ -49,7 +48,7 @@ local function make_frames(m)
     -- blank out every other colour and tangram
     -- alternately for player 1 and player 2
     for i, row in ipairs(colours) do
-        for j, col in ipairs(row) do
+        for j = 1, #row do
             if player.text == "1" then
                 if i % 2 == 1 then -- odd row
                     if j % 2 == 1 then -- odd column
@@ -100,9 +99,9 @@ function puzzle_scene.load()
     love.graphics.setBackgroundColor(1, 1, 1) -- white
 
     Colours = {
-        {246/255, 156/255, 51/255},  -- orange
-        {133/255, 136/255, 255/255}, -- blue
-        {1/255, 144/255, 67/255},    -- green
+        {0, 115/255, 194/255},       -- blue
+        {239/255, 192/255, 0},       -- yellow
+        {134/255, 134/255, 134/255}, -- grey
         {1, 1, 1}                    -- white
     }
 
@@ -246,15 +245,16 @@ function puzzle_scene.draw()
         love.graphics.setColor(0, 1, 0) -- border final cell green
         love.graphics.setLineWidth(7) -- highlight final cell
     else
-        love.graphics.setColor(1, 1, 0) -- yellow
+        love.graphics.setColor(1, 0, 0) -- red
         love.graphics.setLineWidth(7) -- highlight current square
     end
-    love.graphics.rectangle("line", CurrentCol*CellSize, CurrentRow*CellSize, CellSize, CellSize)
-    love.graphics.setLineWidth(5)
-    love.graphics.setColor(0, 0, 0, 0.6)
-    for i, move in ipairs(Moves) do
+    love.graphics.rectangle("line", CurrentCol * CellSize, CurrentRow * CellSize, CellSize, CellSize)
+    love.graphics.setLineWidth(7)
+    love.graphics.setColor(1, 0, 0, 0.7) -- red line colour
+    for _, move in ipairs(Moves) do
         love.graphics.line(move.x1, move.y1, move.x2, move.y2) -- trace moves
     end
+    love.graphics.setColor(0, 0, 0) -- back to black
     love.graphics.setLineWidth(1)
 
     love.graphics.print("Puzzle number: " .. tostring(Puzzle_number), font, 900, 650)

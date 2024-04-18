@@ -28,12 +28,12 @@ title = "Tangram Puzzle"
 
 # The Uniform Type Identifier for your game. This is required for the
 # macOS build of the game.
-uti = "com.company.mygame"
+uti = "com.beechsoft.tangram"
 
 # An arbitrary version for the current iteration of the game. Can use
 # any desired version format. This will be used to differentiate the
 # resulting build files.
-version = "v0.1"
+version = "v1.0"
 
 #
 # Build settings
